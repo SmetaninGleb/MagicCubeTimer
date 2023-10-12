@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/magic_cube_timer
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+security:
+  oauth2:
+    client:
+      clientId: 74516009185-hvbdkr8g8ggm6qup831u52slii79c6lg.apps.googleusercontent.com
+      clientSecret: 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
+      authentication-scheme: form
+      scope:
+        - openid
+        - profile
+      access-token-uri: https://www.googleapis.com/oauth2/v4/token
+      user-authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+    resource:
+      user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+      prefer-token-info: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
