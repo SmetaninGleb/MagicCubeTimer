@@ -1,20 +1,20 @@
 package ru.edu.innopolis.ssn.MagicCubeTimer.controllers;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("auth")
+@Controller
 public class AuthController {
 
-    @GetMapping
+    @GetMapping("/auth")
     public String auth() {
-        return "Hello!";
+        return "login";
     }
 
-    @GetMapping("/secured")
-    public String secured() {
-        return "Hello SECURED!";
+    @GetMapping
+    public String startPage() {
+        return "redirect:/auth";
     }
 }

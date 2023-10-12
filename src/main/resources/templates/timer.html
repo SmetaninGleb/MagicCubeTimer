@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Timer</title>
+    <style>
+        #basicUsage {
+            position:absolute;
+            width:100%;
+            top:50%;
+            text-align:center;
+            font-size: xxx-large;
+        }
+    </style>
+</head>
+<body>
+<div id="basicUsage">00:00:00</div>
+<script type="text/javascript" th:inline="javascript" th:src="@{/js/easytimer.min.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    var timer = new Timer();
+    timer.start();
+
+    timer.addEventListener('secondsUpdated', function (e) {
+        $('#basicUsage').html(timer.getTimeValues().toString());
+    });
+</script>
+</body>
+</html>

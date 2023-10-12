@@ -1,5 +1,6 @@
 package ru.edu.innopolis.ssn.MagicCubeTimer.security;
 
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,14 +16,14 @@ import ru.edu.innopolis.ssn.MagicCubeTimer.repositories.UserRepository;
 
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Client
+@EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers("/").permitAll()
+                .mvcMatchers("/", "/auth").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();

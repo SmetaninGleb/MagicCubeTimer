@@ -8,12 +8,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    static-path-pattern: /static/**
 
 security:
   oauth2:
     client:
       clientId: 74516009185-hvbdkr8g8ggm6qup831u52slii79c6lg.apps.googleusercontent.com
-      clientSecret: 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
+      clientSecret: ${clientSecret}
       authentication-scheme: form
       scope:
         - openid
