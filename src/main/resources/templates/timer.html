@@ -14,15 +14,57 @@
     </style>
 </head>
 <body>
-<div id="basicUsage">00:00:00</div>
-<script type="text/javascript" th:inline="javascript" th:src="@{/js/easytimer.min.js}"></script>
-<script type="text/javascript" th:inline="javascript">
-    var timer = new Timer();
-    timer.start();
+<h1 th:text="${userData.getNickname()}"></h1>
+<a href="/logout">Log out</a>
+<!--<div id="basicUsage">00:00:00</div>-->
+<label id="time" for="timeField">Enter your time:</label>
+<input type="text" id="timeField">
 
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('#basicUsage').html(timer.getTimeValues().toString());
+<p id="status"></p>
+<button id="send" onclick="sendFunc()">Send time</button>
+<button onclick="getStats()">Get stats</button>
+
+<ul id="stats">
+
+</ul>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/easytimer.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/timer.js}"></script>
+<script>
+
+    function sendFunc() {
+        axios.post('/api/time',{
+            time: document.getElementById('timeField').value
+        })
+    }
+
+    function getStats() {
+        axios
+            .get('/api/time')
+            .then(function(response) {
+                console.log(response.data)
+                let data = response.data
+                let list = document.getElementById('stats')
+                while(list.firstChild) {
+                    list.removeChild(list.firstChild)
+                }
+                for (let i = 0; i < data.length; i++) {
+                    let item = document.createElement('li')
+                    item.appendChild(document.createTextNode(data[i].time))
+                    list.appendChild(item)
+                }
+            })
+    }
+
+    $(() => {
+        $('.send').click(() => alert('Hello!'))
     });
+
+
+
 </script>
+
 </body>
 </html>

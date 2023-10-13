@@ -17,4 +17,9 @@ public class AuthController {
     public String startPage() {
         return "redirect:/auth";
     }
+
+    @GetMapping("/login")
+    public String loginRedirect() {
+        return "redirect:/timer";
+    }
 }

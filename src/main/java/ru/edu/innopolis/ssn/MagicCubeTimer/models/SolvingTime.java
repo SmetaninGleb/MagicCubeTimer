@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class SolvingTime {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "time")
